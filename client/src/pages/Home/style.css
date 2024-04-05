@@ -1,0 +1,26 @@
+.icon {
+    height: 80px;
+}
+
+.tab-content {
+    display: flex;
+    justify-content: center;
+}
+
+.tab-pane {
+    width: 460px;
+}
+
+@media screen and (max-width: 499px) {
+    .tab-pane {
+        width: 280px;
+    }
+
+    .containers {
+        min-height: 100% !important;
+    }
+}
+
+.nav-link {
+    font-weight: bold !important;
+}

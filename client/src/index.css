@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Poppins&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+  font-family: "Poppins";
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.error {
+  font-size: 13px;
+  font-weight: 550;
+  color: rgb(200, 23, 23);
+  height: 20px !important;
+}
+
+.error2 {
+  height: 20px !important;
+}

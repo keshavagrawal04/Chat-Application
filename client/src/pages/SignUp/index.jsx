@@ -2,8 +2,11 @@ import { TextInput } from "../../components";
 import { useFormik } from "formik";
 import { signUpSchema } from "../../schema";
 import { Link } from "react-router-dom";
+import { useCreateUserMutation } from "../../services/userService";
 
 const SignUp = ({ setActiveKey }) => {
+  const [createUser] = useCreateUserMutation();
+
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -14,6 +17,7 @@ const SignUp = ({ setActiveKey }) => {
     validationSchema: signUpSchema,
     onSubmit: async (values) => {
       console.log(values);
+      await createUser(values);
     },
   });
 

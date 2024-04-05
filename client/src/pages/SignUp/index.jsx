@@ -12,11 +12,9 @@ const SignUp = ({ setActiveKey }) => {
       fullName: "",
       email: "",
       password: "",
-      profilePicture: "",
     },
     validationSchema: signUpSchema,
     onSubmit: async (values) => {
-      console.log(values);
       await createUser(values);
     },
   });

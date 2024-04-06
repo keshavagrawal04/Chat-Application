@@ -1,15 +1,15 @@
 import { Route, Routes } from "react-router-dom";
-import { Home, Chats, Login } from "./pages";
+import { Home, Chats, Layout } from "./pages";
 
 const App = () => {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-
-        <Route path="/chats" element={<Chats />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/chats" element={<Chats />} />
+        </Routes>
+      </Layout>
     </>
   );
 };

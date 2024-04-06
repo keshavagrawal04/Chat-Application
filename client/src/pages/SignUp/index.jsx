@@ -1,7 +1,9 @@
 import { TextInput } from "../../components";
 import { useFormik } from "formik";
-import { signUpSchema } from "../../schema";
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+
+import { signUpSchema } from "../../schema";
 import { useCreateUserMutation } from "../../services/userService";
 
 const SignUp = ({ setActiveKey }) => {
@@ -15,7 +17,17 @@ const SignUp = ({ setActiveKey }) => {
     },
     validationSchema: signUpSchema,
     onSubmit: async (values) => {
-      await createUser(values);
+      try {
+        let { data, error } = await createUser(values);
+        if (error) {
+          toast.error(error.data.message);
+        } else {
+          toast.success(data.message);
+          setActiveKey("login");
+        }
+      } catch (error) {
+        toast.error(error.message);
+      }
     },
   });
 

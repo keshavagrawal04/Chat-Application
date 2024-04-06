@@ -9,18 +9,10 @@
   "author": "Keshav Agrawal",
   "license": "ISC",
   "dependencies": {
-    "@reduxjs/toolkit": "^2.2.3",
-    "bootstrap": "^5.3.3",
-    "clsx": "^2.1.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "formik": "^2.4.5",
-    "mongoose": "^8.3.0",
-    "react-bootstrap": "^2.10.2",
-    "react-redux": "^9.1.0",
-    "react-router-dom": "^6.22.3",
-    "yup": "^1.4.0"
+    "mongoose": "^8.3.0"
   }
 }

@@ -3,8 +3,13 @@ const { crypto } = require("../utils");
 
 const createUser = async (req, res) => {
   try {
+    let user = await userService.findUserByEmail(req.body.email);
+    if (user)
+      return res
+        .status(400)
+        .json({ message: "User With This Email Is Already Exists" });
     req.body.password = await crypto.generateHash(req.body.password);
-    const user = await userService.saveUser(req.body);
+    user = await userService.saveUser(req.body);
     res.status(201).json({ message: "User Created Successfully", data: user });
   } catch (error) {
     res
@@ -25,7 +30,10 @@ const getAllUsers = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const user = await userService.findUserByEmail(req.body.email);
-    if (!user) return res.status(400).json({ message: "User Not Found" });
+    if (!user)
+      return res
+        .status(400)
+        .json({ message: "User With This Email Is Not Exists" });
     const isPasswordValid = await crypto.validateHash(
       req.body.password,
       user.password.hash,

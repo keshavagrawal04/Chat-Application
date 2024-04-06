@@ -1,9 +1,15 @@
 import { TextInput } from "../../components";
 import { useFormik } from "formik";
+import { toast } from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+
 import { loginSchema } from "../../schema";
-import { Link } from "react-router-dom";
+import { useLoginUserMutation } from "../../services/userService";
 
 const Login = ({ setActiveKey }) => {
+  const [loginUser] = useLoginUserMutation();
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -11,6 +17,19 @@ const Login = ({ setActiveKey }) => {
     },
     validationSchema: loginSchema,
     onSubmit: async (values) => {
+      try {
+        const { data, error } = await loginUser(values);
+        if (error) {
+          toast.error(error.data.message);
+        } else {
+          toast.success(data.message);
+          setTimeout(() => {
+            navigate("/chats");
+          }, 2000);
+        }
+      } catch (error) {
+        toast.error(error.message);
+      }
       console.log(values);
     },
   });

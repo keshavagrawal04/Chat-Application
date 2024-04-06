@@ -9,10 +9,18 @@ const saveUser = async (payload) => {
   }
 };
 
-const findAllUsers = async () => {
+const findAllUsers = async (query) => {
   try {
-    const user = await User.find({});
-    return user;
+    const search = query.search
+      ? {
+          $or: [
+            { name: { $regex: query.search, $options: "i" } },
+            { email: { $regex: query.search, $options: "i" } },
+          ],
+        }
+      : {};
+    let users = await User.find(search);
+    return users;
   } catch (error) {
     throw error;
   }

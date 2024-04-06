@@ -20,7 +20,10 @@ const createUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await userService.getAllUsers();
+    const query = {
+      search: req.query.search || undefined,
+    };
+    const users = await userService.findAllUsers(query);
     return users;
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error" });
